@@ -18,6 +18,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        redSlider.maximumValue = 255.0
+        greenSlider.maximumValue = 255.0
+        blueSlider.maximumValue = 255.0
+        
+        redSlider.value = 0.0
+        greenSlider.value = 0.0
+        blueSlider.value = 0.0
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,7 +33,16 @@ class ViewController: UIViewController {
     }
     
     
-    @IBAction func changeColorComponent(_ sender: UISlider) {
+    @IBAction func changeColorComponent(_ sender: Any) {
+        if redSlider == nil || blueSlider == nil || colorView == nil || greenSlider == nil {
+            return
+        }
+        
+        let red: CGFloat = CGFloat(redSlider.value)
+        let green: CGFloat = CGFloat(greenSlider.value)
+        let blue: CGFloat = CGFloat(blueSlider.value)
+        
+        colorView.backgroundColor = UIColor(displayP3Red: red, green: green, blue: blue, alpha: 1)
     }
     
 }
